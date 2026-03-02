@@ -1,83 +1,145 @@
-# Sandy's Portfolio Website
+# Sandy's Portfolio — Astro + Tailwind CSS
 
-Welcome to Sandy's Portfolio Website! This project is a personal portfolio showcasing Sandy's skills and experiences as a web designer, software engineer, photo editor, and web developer.
+Personal developer portfolio for **Sandesh Patel**, a frontend web developer and cybersecurity learner. Built with [Astro](https://astro.build) and styled entirely with [Tailwind CSS](https://tailwindcss.com).
 
-## Table of Contents
+🌐 **Live site:** [sandyportfolio-seven.vercel.app](https://sandyportfolio-seven.vercel.app)
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+---
 
-## Introduction
+## ✨ What's Inside
 
-This website serves as a personal portfolio for Sandy, highlighting various projects and professional experiences. The design is sleek and modern, using a dark theme with vibrant accent colors to make the content stand out.
+| Section | What it shows |
+|---|---|
+| **Hero** | Name, animated typed roles (Typed.js), Resume download & GitHub CTA |
+| **Services** | Frontend services offered |
+| **About** | Short bio and portrait |
+| **Education** | Diploma details at Government Polytechnic College Narshingpur |
+| **Skills** | Tech stack, tools, and soft skills |
+| **Experience** | Current work and technical background |
+| **Projects** | 4 hand-picked projects with screenshots and live links |
+| **GitHub Repos** | Live-fetched from GitHub API — top 12 repos with real descriptions, language badges, star/fork counts |
+| **Past Experience** | Timeline of certifications and internships with certificate viewer modal |
 
-## Features
+---
 
-- Responsive design that works on all devices
-- Animated text introducing Sandy and her roles
-- Navigation menu for easy access to different sections
-- Sections showcasing past work and experiences
-- Modern and clean layout
+## 🛠 Tech Stack
 
-## Technologies Used
+| Tool | Role |
+|---|---|
+| [Astro 5](https://astro.build) | Static site framework — zero JS by default, island architecture |
+| [Tailwind CSS v4](https://tailwindcss.com) | Utility-first styling via `@tailwindcss/vite` Vite plugin |
+| [Typed.js](https://github.com/mattboldt/typed.js/) | Animated text in the hero section |
+| [GitHub REST API](https://docs.github.com/en/rest) | Fetches live repository data client-side |
+| [Google Fonts — Poppins](https://fonts.google.com/specimen/Poppins) | Typography |
 
-- HTML5
-- CSS3
-- JavaScript
-- [Typed.js](https://github.com/mattboldt/typed.js/) for text animations
-- Google Fonts (Poppins)
+---
 
-## Getting Started
+## 📁 File Structure
 
-To get a local copy up and running, follow these simple steps.
+```
+portfolio/
+├── public/                        # Static assets served as-is
+│   ├── img/                       # All images (project screenshots, certificates, portrait)
+│   │   ├── bg.png                 # Hero illustration
+│   │   ├── im.jpg                 # Portrait photo
+│   │   ├── rps.png / BMI.png …   # Project screenshots
+│   │   └── html.jpg / css.jpg …  # Certificate thumbnails
+│   ├── script.js                  # Client-side JS: scroll-to-top, sticky nav, modal logic
+│   └── SandeshPatel_Resume.pdf.pdf
+│
+├── src/
+│   ├── layouts/
+│   │   └── Layout.astro           # ★ Base layout — <html>, <head>, sticky nav, footer, scripts
+│   │
+│   ├── components/                # ★ One file per page section
+│   │   ├── Hero.astro             # Hero banner — name, Typed.js, CTA buttons
+│   │   ├── Services.astro         # Services offered
+│   │   ├── About.astro            # Bio + portrait
+│   │   ├── Education.astro        # College & diploma info
+│   │   ├── Skills.astro           # Technical & soft skills
+│   │   ├── Experience.astro       # Work experience summary
+│   │   ├── Projects.astro         # Hand-curated project cards (data array driven)
+│   │   ├── GitHubRepos.astro      # Live GitHub API fetch + repo cards
+│   │   └── Timeline.astro         # Certification & internship timeline + modal
+│   │
+│   ├── pages/
+│   │   └── index.astro            # Entry point — imports Layout + all components
+│   │
+│   └── styles/
+│       └── global.css             # @import "tailwindcss" + custom theme tokens
+│
+├── astro.config.mjs               # Astro config — registers @tailwindcss/vite plugin
+├── package.json
+└── tsconfig.json
+```
 
-### Prerequisites
+---
 
-Make sure you have the following installed:
+## ⚙️ How It Works
 
-- Web browser (e.g., Chrome, Firefox)
+### Build & Rendering
+Astro renders every page to **static HTML** at build time. There is no server runtime — the output is a folder of plain `.html` files that can be hosted anywhere (GitHub Pages, Vercel, Netlify, etc.).
 
-### Installation
+### Component Architecture
+Each visible section of the page lives in its own `.astro` component file under `src/components/`. The `index.astro` page simply imports and composes them all, keeping it to ~20 lines:
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/sandeshPatel06/SandyPortfolio
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd sandy-portfolio
-    ```
-3. Open `index.html` in your web browser to view the website.
+```astro
+// src/pages/index.astro
+<Layout>
+  <Hero />
+  <Services />
+  <About />
+  ...
+</Layout>
+```
 
-## Usage
+Adding or reordering a section means touching only `index.astro`. Editing a section's content means opening only that section's component.
 
-Feel free to customize the content and styles to suit your needs. The main sections of the website are located within the `index.html` file, and the styles are defined in the `<style>` section within the same file.
+### Styling with Tailwind CSS
+`global.css` contains a single `@import "tailwindcss"` (Tailwind v4 syntax) plus an `@theme {}` block that declares the custom color palette as CSS variables. All markup in `.astro` files uses **Tailwind utility classes** directly — no separate CSS files per component.
 
-## Contributing
+### GitHub Repos Section
+`GitHubRepos.astro` runs a `fetch()` call **in the browser** against the GitHub public REST API:
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+```
+GET https://api.github.com/users/sandeshPatel06/repos?sort=updated&per_page=30
+```
 
-If you have suggestions for improving this project, please follow the steps below:
+It then:
+1. Filters out forks and archived repos
+2. Sorts by star count descending, then by last push date
+3. Takes the top 12
+4. Looks up each repo by name in a hardcoded `repoDescriptions` map to surface a meaningful description (since most repos have no description on GitHub)
+5. Renders a card with language color dot, star/fork/issue chips, and a Live Demo link when `homepage` is set
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/YourFeature`)
-3. Commit your Changes (`git commit -m 'Add Some Feature'`)
-4. Push to the Branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
+### `public/script.js`
+Handles three behaviors at runtime:
+- **Sticky nav shadow** on scroll
+- **Scroll-to-top button** visibility
+- **Certificate modal** open/close (`showImage()`, `showImag()`, `closeImage()`)
 
-## License
+---
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+## 🚀 Local Development
 
-## Contact
+```sh
+# Install dependencies
+npm install
 
-Sandy - [sandeshpatel.sp.93@gmail.com](mailto:sandeshpatel.sp.93@gmail.com)
+# Start dev server (http://localhost:4321)
+npm run dev
 
-Project Link: [https://github.com/sandeshPatel06/SandyPortfolio](https://github.com/sandeshPatel06/SandyPortfolio)
+# Production build → ./dist/
+npm run build
+```
 
+---
+
+## 📬 Contact
+
+**Sandesh Patel** · [sandeshpatel.sp.93@gmail.com](mailto:sandeshpatel.sp.93@gmail.com)  
+GitHub: [@sandeshPatel06](https://github.com/sandeshPatel06) · LinkedIn: [sandesh-patel07](https://www.linkedin.com/in/sandesh-patel07)
+
+---
+
+*Distributed under the MIT License — see `license.txt`.*

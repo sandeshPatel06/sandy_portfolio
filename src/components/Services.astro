@@ -1,0 +1,73 @@
+---
+import Icon from "./Icon.astro";
+
+const services = [
+  {
+    icon: "code",
+    title: "Frontend Development",
+    description:
+      "Building responsive, accessible websites with HTML, CSS, JavaScript, and Bootstrap — the core stack I use across all personal and internship projects.",
+  },
+  {
+    icon: "folder",
+    title: "Web Application Development",
+    description:
+      "Developing interactive tools and apps — from a BMI Calculator and Rock Paper Scissors game to an e-learning platform built during my Next24Tech internship.",
+  },
+  {
+    icon: "user",
+    title: "UI/UX Design",
+    description:
+      "Crafting clean, modern layouts with a focus on usability and visual hierarchy — applied across my portfolio, tour booking site, and e-commerce projects.",
+  },
+  {
+    icon: "python",
+    title: "Python Scripting & Automation",
+    description:
+      "Writing Python scripts for automation, text-to-speech, CLI tools, and machine learning pipelines — explored during my Codetech IT Solutions ML internship.",
+  },
+  {
+    icon: "wrench",
+    title: "Performance & Optimization",
+    description:
+      "Applying best practices like lazy loading, semantic HTML, and minimal JS to keep pages fast and SEO-friendly — especially important in the portfolio stack (Astro + Tailwind).",
+  },
+  {
+    icon: "github",
+    title: "Version Control & Open Source",
+    description:
+      "Managing projects with Git and GitHub — maintaining 20+ public repositories with consistent commits, branching, and documentation.",
+  },
+];
+---
+
+<section
+  id="services"
+  class="mt-8 p-5 bg-[var(--surface)] rounded-[12px] shadow-[0_10px_25px_rgba(0,0,0,0.2)]
+         border border-[var(--card-border)]"
+>
+  <h2 class="mt-0 mb-5 text-[var(--text-soft)]">Services</h2>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+    {
+      services.map((s) => (
+        <div
+          class="flex flex-col gap-3 p-4 rounded-[10px] bg-[var(--surface-strong)]
+               border border-[var(--card-border)] hover:border-[var(--accent)] transition-colors"
+        >
+          <div
+            class="w-10 h-10 flex items-center justify-center rounded-lg
+                    bg-[var(--accent)]/10 text-[var(--accent)]"
+          >
+            <Icon name={s.icon} size={22} />
+          </div>
+          <h3 class="m-0 text-[var(--text-soft)] text-[0.95rem] font-semibold">
+            {s.title}
+          </h3>
+          <p class="m-0 text-[var(--text-soft)] text-[0.85rem] leading-relaxed">
+            {s.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

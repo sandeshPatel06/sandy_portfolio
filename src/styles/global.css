@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #000021;
+    --surface: #12123e;
+    --surface-strong: #191960;
+    --nav-bg: rgba(25, 25, 96, 0.9);
+    --footer-bg: #0e0e2d;
+    --text: #ffffff;
+    --text-soft: #c6e1ea;
+    --text-muted: #a0a5d6;
+    --accent: #9e59df;
+    --accent-strong: #5b69e8;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --img-border: rgba(255, 255, 255, 0.10);
+  }
+
+  html.light {
+    --bg: #f0f4ff;
+    --surface: #ffffff;
+    --surface-strong: #e4eaff;
+    --nav-bg: rgba(224, 232, 255, 0.95);
+    --footer-bg: #d8e2ff;
+    --text: #1a1a3e;
+    --text-soft: #2d3a6e;
+    --text-muted: #5b6a9e;
+    --accent: #9e59df;
+    --accent-strong: #5b69e8;
+    --card-border: rgba(0, 0, 0, 0.07);
+    --img-border: rgba(0, 0, 0, 0.10);
+  }
+
+  html {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, var(--surface-strong) 0%, var(--bg) 40%);
+    color: var(--text);
+  }
+
+  img {
+    border-radius: 10px;
+    border: 1px solid var(--img-border);
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -50px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.lang-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.scroll-to-top {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--accent-strong);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 4px 14px rgba(91, 105, 232, 0.45);
+  transition: transform 0.2s ease;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px);
+}
+
+#theme-knob {
+  transition: left 0.3s cubic-bezier(.4, 0, .2, 1);
+}
+
+
+@media (max-width: 768px) {
+  #main-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--surface-strong);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.7rem 1rem;
+    z-index: 999;
+  }
+
+  #main-menu.active {
+    display: block;
+  }
+
+  #main-menu ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  nav {
+    position: relative;
+  }
+}

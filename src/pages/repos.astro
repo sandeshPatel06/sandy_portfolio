@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GitHubContributions from "../components/GitHubContributions.astro";
+import GitHubRepos from "../components/GitHubRepos.astro";
+---
+
+<Layout
+  title="GitHub Repositories | Sandesh Patel"
+  description="Browse all of Sandesh Patel's public GitHub repositories — live stats, languages, descriptions, and contribution graph."
+>
+  <div class="mt-6 mb-2">
+    <a
+      href="/"
+      class="text-[var(--text-muted)] text-sm no-underline hover:text-[var(--accent)] transition-colors"
+    >
+      ← Back to Portfolio
+    </a>
+  </div>
+
+  <GitHubContributions />
+  <GitHubRepos />
+</Layout>

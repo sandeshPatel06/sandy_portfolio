@@ -1,0 +1,343 @@
+---
+import "../styles/global.css";
+import Icon from "../components/Icon.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Sandesh Patel | Web Developer Portfolio",
+  description = "Portfolio of Sandesh Patel, a frontend web developer and cybersecurity learner showcasing services, projects, skills, and experience.",
+} = Astro.props;
+
+const siteUrl = "https://sandeshpatel06.github.io/SandyPortfolio/";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sandesh Patel",
+  url: siteUrl,
+  jobTitle: "Frontend Web Developer",
+  email: "mailto:sandeshpatel.sp.93@gmail.com",
+  sameAs: [
+    "https://github.com/sandeshPatel06",
+    "https://www.linkedin.com/in/sandesh-patel07",
+    "https://www.instagram.com/sandesh_patel007",
+  ],
+};
+
+const navLinks = [
+  { href: "/#about", label: "About", icon: "user" },
+  { href: "/#services", label: "Services", icon: "wrench" },
+  { href: "/#projects", label: "Projects", icon: "folder" },
+  { href: "/repos", label: "Repos", icon: "code" },
+];
+
+const footerLinks = [
+  {
+    href: "https://www.instagram.com/sandesh_patel007",
+    label: "Instagram",
+    icon: "instagram",
+  },
+  {
+    href: "https://www.linkedin.com/in/sandesh-patel07",
+    label: "LinkedIn",
+    icon: "linkedin",
+  },
+  { href: "mailto:sandeshpatel.sp.93@gmail.com", label: "Email", icon: "mail" },
+  {
+    href: "https://github.com/sandeshPatel06",
+    label: "GitHub",
+    icon: "github",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#191960" />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}img/bg.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}img/bg.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+    <script is:inline>
+      if (localStorage.getItem("theme") === "light")
+        document.documentElement.classList.add("light");
+    </script>
+  </head>
+
+  <body>
+    <a
+      href="#main-content"
+      class="skip-link bg-[var(--accent-strong)] text-white px-3 py-2 rounded-lg z-[2000] no-underline text-sm"
+      >Skip to content</a
+    >
+
+    <button
+      id="theme-toggle"
+      aria-label="Toggle colour theme"
+      class="fixed bottom-[80px] right-[20px] z-[1200] flex items-center gap-2
+             bg-[var(--surface)] border border-[var(--card-border)] rounded-full px-3 py-2
+             shadow-xl cursor-pointer select-none"
+    >
+      <Icon name="sun" size={16} class="text-[var(--text-muted)]" />
+      <div
+        class="relative w-12 h-6 bg-[var(--surface-strong)] rounded-full border border-[var(--card-border)]"
+      >
+        <span
+          id="theme-knob"
+          class="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-[var(--accent-strong)]"
+          style="left:3px;"></span>
+      </div>
+      <Icon name="moon" size={16} class="text-[var(--text-muted)]" />
+    </button>
+
+    <header class="sticky top-0 z-[1000]">
+      <nav aria-label="Main navigation" class="relative">
+        <div
+          class="max-w-[1120px] mx-auto h-[70px] flex justify-between items-center px-4
+                    bg-[var(--nav-bg)] backdrop-blur-[10px] border-b border-[var(--card-border)]"
+        >
+          <a
+            class="no-underline font-bold tracking-wide text-[var(--text)]"
+            href="/#home">Sandy's Portfolio</a
+          >
+
+          <button
+            id="menu-toggle"
+            class="w-10 h-10 flex items-center justify-center
+                   bg-[var(--surface-strong)] border border-[var(--card-border)]
+                   rounded-lg cursor-pointer text-[var(--text)] md:hidden"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >
+            <span id="nav-menu-icon"><Icon name="menu" size={22} /></span>
+            <span id="nav-close-icon" class="hidden"
+              ><Icon name="xmark" size={22} /></span
+            >
+          </button>
+
+          <ul class="hidden md:flex items-center gap-5 m-0 p-0 list-none">
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="no-underline text-[var(--text)] text-[0.9rem] font-medium
+                   hover:text-[var(--accent)] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://wa.me/9399613606"
+                class="no-underline inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full
+                        bg-[var(--accent)] text-white text-[0.85rem] font-semibold hover:opacity-90 transition-opacity"
+              >
+                <Icon name="whatsapp" size={14} />
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          id="mobile-menu-panel"
+          class="hidden absolute top-full left-0 right-0 z-[999]
+                 bg-[var(--surface-strong)] border-b border-[var(--card-border)]
+                 px-6 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.3)] md:hidden"
+        >
+          <ul class="flex flex-col gap-5 m-0 p-0 list-none">
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="mobile-nav-link no-underline text-[var(--text)] text-[1rem] font-medium
+                   hover:text-[var(--accent)] transition-colors flex items-center gap-3"
+                  >
+                    <Icon name={link.icon} size={20} />
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://wa.me/9399613606"
+                class="no-underline inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                        bg-[var(--accent)] text-white text-[0.9rem] font-semibold hover:opacity-90 transition-opacity"
+              >
+                <Icon name="whatsapp" size={18} />
+                Contact on WhatsApp
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" class="max-w-[1120px] mx-auto px-4 py-8 pb-16">
+      <slot />
+    </main>
+
+    <footer
+      class="px-4 py-8 bg-[var(--footer-bg)] border-t border-[var(--card-border)]"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center max-w-[1120px] mx-auto gap-4"
+      >
+        <div class="font-semibold text-[var(--text-soft)]">
+          Sandy's Portfolio Website
+        </div>
+        <ul class="flex gap-5 m-0 p-0 list-none">
+          {
+            footerLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={
+                    link.href.startsWith("mailto")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
+                  aria-label={link.label}
+                  class="text-[var(--text-soft)] no-underline hover:text-[var(--accent)] transition-colors flex items-center gap-1.5"
+                >
+                  <Icon name={link.icon} size={18} />
+                  <span class="hidden sm:inline">{link.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div
+        class="mt-4 text-[var(--text-muted)] text-[0.9rem] max-w-[1120px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2"
+      >
+        <ul class="flex gap-4 m-0 p-0 list-none">
+          <li>
+            <a
+              href="#"
+              class="text-[var(--text-muted)] no-underline hover:underline"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-[var(--text-muted)] no-underline hover:underline"
+              >Terms of Service</a
+            >
+          </li>
+        </ul>
+        <span
+          >Copyright &#169; 2026 <span id="site-host"></span> | All rights reserved</span
+        >
+      </div>
+    </footer>
+
+    <script
+      is:inline
+      src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"
+      defer></script>
+    <script is:inline>
+      window.addEventListener("DOMContentLoaded", () => {
+        const hostEl = document.getElementById("site-host");
+        if (hostEl) hostEl.textContent = window.location.hostname;
+
+        const html = document.documentElement;
+        const btn = document.getElementById("theme-toggle");
+        const knob = document.getElementById("theme-knob");
+
+        const applyTheme = () => {
+          if (knob)
+            knob.style.left = html.classList.contains("light")
+              ? "calc(100% - 21px)"
+              : "3px";
+        };
+        applyTheme();
+
+        if (btn) {
+          btn.addEventListener("click", () => {
+            html.classList.toggle("light");
+            localStorage.setItem(
+              "theme",
+              html.classList.contains("light") ? "light" : "dark",
+            );
+            applyTheme();
+          });
+        }
+
+        if (window.Typed) {
+          new window.Typed("#element", {
+            strings: [
+              "web designer.",
+              "Cybersecurity engineer.",
+              "photo editor.",
+              "frontend web developer.",
+            ],
+            typeSpeed: 120,
+            backSpeed: 60,
+            loop: true,
+          });
+        }
+
+        const toggle = document.getElementById("menu-toggle");
+        const panel = document.getElementById("mobile-menu-panel");
+        const menuIcon = document.getElementById("nav-menu-icon");
+        const closeIcon = document.getElementById("nav-close-icon");
+        if (toggle && panel) {
+          toggle.addEventListener("click", () => {
+            const isOpen = !panel.classList.contains("hidden");
+            panel.classList.toggle("hidden");
+            toggle.setAttribute("aria-expanded", String(!isOpen));
+            menuIcon?.classList.toggle("hidden");
+            closeIcon?.classList.toggle("hidden");
+          });
+          panel.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              panel.classList.add("hidden");
+              menuIcon?.classList.remove("hidden");
+              closeIcon?.classList.add("hidden");
+              toggle.setAttribute("aria-expanded", "false");
+            });
+          });
+        }
+      });
+    </script>
+    <script is:inline src="/script.js"></script>
+  </body>
+</html>

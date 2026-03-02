@@ -1,0 +1,55 @@
+---
+import Icon from "./Icon.astro";
+
+const techStack = [
+  { icon: "html", label: "HTML" },
+  { icon: "css", label: "CSS" },
+  { icon: "javascript", label: "JavaScript" },
+  { icon: "react", label: "React" },
+  { icon: "vue", label: "Vue.js" },
+  { icon: "expo", label: "React Native" },
+  { icon: "python", label: "Python" },
+  { icon: "django", label: "Django" },
+  { icon: "go", label: "Go" },
+  { icon: "java", label: "Java" },
+  { icon: "bootstrap", label: "Bootstrap" },
+  { icon: "git", label: "Git" },
+  { icon: "vscode", label: "VS Code" },
+];
+---
+
+<section
+  id="skills"
+  class="mt-8 p-5 bg-[var(--surface)] rounded-[12px] shadow-[0_10px_25px_rgba(0,0,0,0.2)]
+         border border-[var(--card-border)]"
+>
+  <h2 class="mt-0 mb-4 text-[var(--text-soft)]">Skills</h2>
+
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-3 mb-5">
+    {
+      techStack.map((t) => (
+        <div
+          class="flex flex-col items-center gap-1.5 p-3 rounded-[10px]
+                  bg-[var(--surface-strong)] border border-[var(--card-border)]
+                  text-[var(--text-soft)] hover:border-[var(--accent)] transition-colors"
+        >
+          <Icon name={t.icon} size={28} />
+          <span class="text-xs font-medium text-center">{t.label}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <ul class="m-0 pl-5 space-y-2 text-[var(--text-soft)]">
+    <li><strong>Frontend:</strong> HTML, CSS, JS, Bootstrap, React, Vue.js</li>
+    <li><strong>Mobile:</strong> React Native, Expo</li>
+    <li><strong>Backend:</strong> Go, Python, Django, REST APIs</li>
+    <li>
+      <strong>Cybersecurity:</strong> Secure Coding, Network Basics, Threat Awareness
+    </li>
+    <li><strong>Tools:</strong> Git, VS Code, Linux, GitHub</li>
+    <li>
+      <strong>Soft Skills:</strong> Problem-Solving, Teamwork, Time Management
+    </li>
+  </ul>
+</section>
