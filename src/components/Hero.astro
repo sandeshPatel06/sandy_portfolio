@@ -1,0 +1,46 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section
+  id="home"
+  class="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-8 items-center mt-4"
+>
+  <div class="text-center md:text-left">
+    <h1 class="m-0 text-[clamp(2rem,6vw,3rem)] leading-[1.15] font-bold">
+      <span class="text-[var(--accent)]">SANDESH PATEL</span>
+    </h1>
+    <p class="mt-3 mb-0 text-[var(--text-soft)]">And I am a passionate <span id="element"></span></p>
+    <div class="flex flex-wrap gap-3 mt-5 justify-center md:justify-start">
+      <a
+        href="/SandeshPatel_Resume.pdf.pdf"
+        class="inline-flex items-center gap-2 justify-center rounded-[10px] border border-transparent
+               px-4 py-[0.65rem] text-[0.95rem] font-semibold no-underline cursor-pointer
+               bg-[var(--accent-strong)] text-white transition-transform hover:-translate-y-0.5"
+        download
+      >
+        <Icon name="download" size={17} />
+        Download Resume
+      </a>
+      <a
+        target="_blank" rel="noopener noreferrer"
+        href="https://github.com/sandeshPatel06?tab=repositories"
+        class="inline-flex items-center gap-2 justify-center rounded-[10px]
+               border border-[var(--card-border)] px-4 py-[0.65rem] text-[0.95rem] font-semibold
+               no-underline cursor-pointer bg-[var(--surface-strong)] text-[var(--text)]
+               transition-transform hover:-translate-y-0.5"
+      >
+        <Icon name="github" size={17} />
+        Visit GitHub
+      </a>
+    </div>
+  </div>
+  <div class="flex justify-center">
+    <img
+      src="/img/bg.png"
+      alt="Illustration for Sandesh Patel portfolio"
+      width="400" height="400"
+      class="max-w-full h-auto"
+    />
+  </div>
+</section>

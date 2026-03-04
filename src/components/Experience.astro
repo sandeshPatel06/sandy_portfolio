@@ -1,0 +1,85 @@
+---
+import Icon from "./Icon.astro";
+
+const roles = [
+  {
+    icon: "folder",
+    title: "Web Development Internship",
+    org: "Next24Tech Technology & Services",
+    period: "Jul – Sep 2024",
+    points: [
+      "Built responsive frontend pages used in production client projects",
+      "Worked with HTML, CSS, JavaScript, and Bootstrap in a team environment",
+      "Improved Git workflow, code review, and project delivery practices",
+    ],
+  },
+  {
+    icon: "python",
+    title: "Machine Learning Internship",
+    org: "Codetech IT Solutions",
+    period: "Aug – Sep 2024",
+    points: [
+      "Implemented data preprocessing pipelines and trained ML models using Python",
+      "Worked with scikit-learn, pandas, and NumPy on real datasets",
+      "Delivered a working TTS (Text-to-Speech) interface as a key deliverable",
+    ],
+  },
+  {
+    icon: "code",
+    title: "Full-Stack & Mobile Development",
+    org: "Freelance / Personal Projects",
+    period: "2024 – Present",
+    points: [
+      "~1 year building full-stack apps with Go (backend), Django (Python), React and Vue.js (frontend)",
+      "Built mobile apps using React Native and Expo — including Jarvis Chat with WebRTC and Firebase",
+      "Deployed projects to Vercel and GitHub Pages; maintained 20+ public repositories",
+    ],
+  },
+];
+---
+
+<section
+  id="experience"
+  class="mt-8 p-5 bg-[var(--surface)] rounded-[12px] shadow-[0_10px_25px_rgba(0,0,0,0.2)]
+         border border-[var(--card-border)]"
+>
+  <h2 class="mt-0 mb-5 text-[var(--text-soft)]">Experience</h2>
+
+  <div class="flex flex-col gap-4">
+    {
+      roles.map((r) => (
+        <div
+          class="p-4 rounded-[10px] bg-[var(--surface-strong)] border border-[var(--card-border)]
+                  hover:border-[var(--accent)] transition-colors"
+        >
+          <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span
+                class="w-8 h-8 flex items-center justify-center rounded-lg
+                         bg-[var(--accent)]/10 text-[var(--accent)] shrink-0"
+              >
+                <Icon name={r.icon} size={18} />
+              </span>
+              <div>
+                <div class="font-semibold text-[var(--text-soft)] text-[0.95rem]">
+                  {r.title}
+                </div>
+                <div class="text-xs text-[var(--accent)] font-medium">
+                  {r.org}
+                </div>
+              </div>
+            </div>
+            <span class="text-xs text-[var(--text-muted)] whitespace-nowrap mt-1">
+              {r.period}
+            </span>
+          </div>
+          <ul class="m-0 pl-5 space-y-1">
+            {r.points.map((p) => (
+              <li class="text-[0.85rem] text-[var(--text-soft)]">{p}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
