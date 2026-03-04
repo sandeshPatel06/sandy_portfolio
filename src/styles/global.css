@@ -36,11 +36,15 @@
     scroll-behavior: smooth;
     background-color: var(--bg);
     color: var(--text);
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   body {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
     background: radial-gradient(circle at top, var(--surface-strong) 0%, var(--bg) 40%);
     color: var(--text);
   }
