@@ -1,145 +1,132 @@
-# Sandy's Portfolio — Astro + Tailwind CSS
+# Sandy Portfolio (Astro)
 
-Personal developer portfolio for **Sandesh Patel**, a frontend web developer and cybersecurity learner. Built with [Astro](https://astro.build) and styled entirely with [Tailwind CSS](https://tailwindcss.com).
+Personal portfolio site for **Sandesh Patel**, built with Astro and Tailwind CSS.
 
-🌐 **Live site:** [sandyportfolio-seven.vercel.app](https://sandyportfolio-seven.vercel.app)
+Live site: [sandeshpatel06.github.io/SandyPortfolio](https://sandeshpatel06.github.io/SandyPortfolio/)
 
----
+## Tech Stack
 
-## ✨ What's Inside
+- Astro 5
+- Tailwind CSS 4 (`@tailwindcss/vite`)
+- Typed.js (hero text animation)
+- GitHub Actions (deploy to GitHub Pages)
 
-| Section | What it shows |
-|---|---|
-| **Hero** | Name, animated typed roles (Typed.js), Resume download & GitHub CTA |
-| **Services** | Frontend services offered |
-| **About** | Short bio and portrait |
-| **Education** | Diploma details at Government Polytechnic College Narshingpur |
-| **Skills** | Tech stack, tools, and soft skills |
-| **Experience** | Current work and technical background |
-| **Projects** | 4 hand-picked projects with screenshots and live links |
-| **GitHub Repos** | Live-fetched from GitHub API — top 12 repos with real descriptions, language badges, star/fork counts |
-| **Past Experience** | Timeline of certifications and internships with certificate viewer modal |
+## Current Project Structure
 
----
-
-## 🛠 Tech Stack
-
-| Tool | Role |
-|---|---|
-| [Astro 5](https://astro.build) | Static site framework — zero JS by default, island architecture |
-| [Tailwind CSS v4](https://tailwindcss.com) | Utility-first styling via `@tailwindcss/vite` Vite plugin |
-| [Typed.js](https://github.com/mattboldt/typed.js/) | Animated text in the hero section |
-| [GitHub REST API](https://docs.github.com/en/rest) | Fetches live repository data client-side |
-| [Google Fonts — Poppins](https://fonts.google.com/specimen/Poppins) | Typography |
-
----
-
-## 📁 File Structure
-
-```
+```text
 portfolio/
-├── public/                        # Static assets served as-is
-│   ├── img/                       # All images (project screenshots, certificates, portrait)
-│   │   ├── bg.png                 # Hero illustration
-│   │   ├── im.jpg                 # Portrait photo
-│   │   ├── rps.png / BMI.png …   # Project screenshots
-│   │   └── html.jpg / css.jpg …  # Certificate thumbnails
-│   ├── script.js                  # Client-side JS: scroll-to-top, sticky nav, modal logic
-│   └── SandeshPatel_Resume.pdf.pdf
-│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml                 # Build + deploy workflow for GitHub Pages
+├── public/
+│   ├── favicon.svg
+│   ├── script.js                      # Scroll-to-top + certificate modal behavior
+│   └── img/                           # Portfolio images/certificates/logos
 ├── src/
+│   ├── components/
+│   │   ├── About.astro
+│   │   ├── Education.astro
+│   │   ├── Experience.astro
+│   │   ├── GitHubContributions.astro  # Present in repo, not used on index page
+│   │   ├── GitHubRepos.astro          # Present in repo, not used on index page
+│   │   ├── Hero.astro
+│   │   ├── Icon.astro
+│   │   ├── Projects.astro
+│   │   ├── Services.astro
+│   │   ├── Skills.astro
+│   │   └── Timeline.astro
 │   ├── layouts/
-│   │   └── Layout.astro           # ★ Base layout — <html>, <head>, sticky nav, footer, scripts
-│   │
-│   ├── components/                # ★ One file per page section
-│   │   ├── Hero.astro             # Hero banner — name, Typed.js, CTA buttons
-│   │   ├── Services.astro         # Services offered
-│   │   ├── About.astro            # Bio + portrait
-│   │   ├── Education.astro        # College & diploma info
-│   │   ├── Skills.astro           # Technical & soft skills
-│   │   ├── Experience.astro       # Work experience summary
-│   │   ├── Projects.astro         # Hand-curated project cards (data array driven)
-│   │   ├── GitHubRepos.astro      # Live GitHub API fetch + repo cards
-│   │   └── Timeline.astro         # Certification & internship timeline + modal
-│   │
+│   │   └── Layout.astro               # Global layout, SEO/meta, nav/footer, theme + typed init
 │   ├── pages/
-│   │   └── index.astro            # Entry point — imports Layout + all components
-│   │
+│   │   └── index.astro                # Composes all visible home sections
 │   └── styles/
-│       └── global.css             # @import "tailwindcss" + custom theme tokens
-│
-├── astro.config.mjs               # Astro config — registers @tailwindcss/vite plugin
+│       └── global.css                 # Tailwind import + theme variables + shared styles
+├── astro.config.mjs
 ├── package.json
-└── tsconfig.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
 ```
 
----
+## How This Project Works
 
-## ⚙️ How It Works
+### 1. Page Composition
 
-### Build & Rendering
-Astro renders every page to **static HTML** at build time. There is no server runtime — the output is a folder of plain `.html` files that can be hosted anywhere (GitHub Pages, Vercel, Netlify, etc.).
+`src/pages/index.astro` imports section components and renders them inside `Layout.astro`:
 
-### Component Architecture
-Each visible section of the page lives in its own `.astro` component file under `src/components/`. The `index.astro` page simply imports and composes them all, keeping it to ~20 lines:
+- Hero
+- Services
+- About
+- Education
+- Skills
+- Experience
+- Projects
+- Timeline
 
-```astro
-// src/pages/index.astro
-<Layout>
-  <Hero />
-  <Services />
-  <About />
-  ...
-</Layout>
-```
+This keeps each section independent and easy to edit.
 
-Adding or reordering a section means touching only `index.astro`. Editing a section's content means opening only that section's component.
+### 2. Layout and Global UI
 
-### Styling with Tailwind CSS
-`global.css` contains a single `@import "tailwindcss"` (Tailwind v4 syntax) plus an `@theme {}` block that declares the custom color palette as CSS variables. All markup in `.astro` files uses **Tailwind utility classes** directly — no separate CSS files per component.
+`src/layouts/Layout.astro` provides:
 
-### GitHub Repos Section
-`GitHubRepos.astro` runs a `fetch()` call **in the browser** against the GitHub public REST API:
+- Shared `<head>` metadata (SEO, Open Graph, structured data)
+- Header/navigation and footer
+- Theme toggle (dark/light with `localStorage` persistence)
+- Typed.js initialization for hero text
+- Mobile menu toggle logic
 
-```
-GET https://api.github.com/users/sandeshPatel06/repos?sort=updated&per_page=30
-```
+### 3. Styling
 
-It then:
-1. Filters out forks and archived repos
-2. Sorts by star count descending, then by last push date
-3. Takes the top 12
-4. Looks up each repo by name in a hardcoded `repoDescriptions` map to surface a meaningful description (since most repos have no description on GitHub)
-5. Renders a card with language color dot, star/fork/issue chips, and a Live Demo link when `homepage` is set
+`src/styles/global.css`:
 
-### `public/script.js`
-Handles three behaviors at runtime:
-- **Sticky nav shadow** on scroll
-- **Scroll-to-top button** visibility
-- **Certificate modal** open/close (`showImage()`, `showImag()`, `closeImage()`)
+- Imports Tailwind (`@import "tailwindcss"`)
+- Defines CSS variables for dark/light themes
+- Adds shared utility styles (skip link, scroll-to-top button, etc.)
 
----
+### 4. Client-Side Script
 
-## 🚀 Local Development
+`public/script.js` handles:
 
-```sh
-# Install dependencies
+- Scroll behavior and sticky nav class handling
+- Floating scroll-to-top button
+- Timeline certificate modal open/close behavior (`showImage`, `showImag`, `closeImage`)
+
+### 5. Build and Deployment
+
+- `npm run build` generates static output in `dist/`
+- `.github/workflows/deploy.yml` builds and deploys `dist/` to GitHub Pages
+- Workflow now runs `npm install` before build to ensure dependencies (including CSS build tooling) are installed
+
+## Local Development
+
+```bash
 npm install
-
-# Start dev server (http://localhost:4321)
 npm run dev
+```
 
-# Production build → ./dist/
+Production build:
+
+```bash
 npm run build
 ```
 
----
+Preview production build locally:
 
-## 📬 Contact
+```bash
+npm run preview
+```
 
-**Sandesh Patel** · [sandeshpatel.sp.93@gmail.com](mailto:sandeshpatel.sp.93@gmail.com)  
-GitHub: [@sandeshPatel06](https://github.com/sandeshPatel06) · LinkedIn: [sandesh-patel07](https://www.linkedin.com/in/sandesh-patel07)
+## Deployment Workflow Summary
 
----
+GitHub Actions workflow (`.github/workflows/deploy.yml`) runs on push to `main` and `new-dev`:
 
-*Distributed under the MIT License — see `license.txt`.*
+1. Checkout code
+2. Setup Node.js 20
+3. Run `npm install`
+4. Run `npm run build`
+5. Upload `dist/`
+6. Deploy to GitHub Pages
+
+## License
+
+MIT (`license.txt`)

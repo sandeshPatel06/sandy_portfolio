@@ -12,69 +12,96 @@ interface Project {
 
 const projects: Project[] = [
   {
-    image: "/img/rps.png",
+    image: "/img/rps-game.webp",
     alt: "Rock Paper Scissors game screenshot",
     title: "Rock, Paper and Scissors Game",
-    description: "I developed a game using HTML, CSS, and JavaScript where users play against the computer with dynamic game logic.",
+    description:
+      "I developed a game using HTML, CSS, and JavaScript where users play against the computer with dynamic game logic.",
     github: "https://github.com/RPS-Game/",
     live: "https://sandeshpatel06.github.io/RPS-Game/",
   },
   {
-    image: "/img/learnig.png",
+    image: "/img/elearning-website.webp",
     alt: "E-learning website screenshot",
     title: "E-Commerce Website",
-    description: "I created an e-learning website featuring tech development courses and Google Form integration for user interaction.",
+    description:
+      "I created an e-learning website featuring tech development courses and Google Form integration for user interaction.",
     github: "https://github.com/sandeshpatel06/E-learningWeb/",
     live: "https://sandeshpatel06.github.io/E-learningWeb/",
   },
   {
-    image: "/img/BMI.png",
+    image: "/img/bmi-calculator.webp",
     alt: "BMI calculator screenshot",
     title: "BMI Calculator",
-    description: "I built a BMI calculator using HTML, CSS, and JavaScript that computes and displays body mass index values.",
+    description:
+      "I built a BMI calculator using HTML, CSS, and JavaScript that computes and displays body mass index values.",
     github: "https://github.com/sandeshpatel06/BMI-calculator/",
     live: "https://sandeshpatel06.github.io/BMI-calculator/",
   },
   {
-    image: "/img/Island.png",
+    image: "/img/tour-booking-website.webp",
     alt: "Tour booking website screenshot",
     title: "Tour Booking Website",
-    description: "I developed a website allowing users to book tours with options for destinations, dates, and preferences.",
+    description:
+      "I developed a website allowing users to book tours with options for destinations, dates, and preferences.",
     github: "https://github.com/sandeshpatel06/Web-design-01/",
     live: "https://sandeshpatel06.github.io/Web-design-01/tours.html",
   },
 ];
 ---
 
-<section id="projects" class="mt-8 p-5 bg-[var(--surface)] rounded-[12px]
-  shadow-[0_10px_25px_rgba(0,0,0,0.2)] border border-[var(--card-border)]">
+<section
+  id="projects"
+  class="mt-8 p-5 bg-[var(--surface)] rounded-[12px]
+  shadow-[0_10px_25px_rgba(0,0,0,0.2)] border border-[var(--card-border)]"
+>
   <h2 class="mt-0 mb-4 text-[var(--text-soft)]">My Projects</h2>
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
-    {projects.map((p) => (
-      <article class="bg-[var(--surface-strong)] border border-[var(--card-border)]
-                      rounded-[10px] p-4 flex flex-col">
-        <img
-          src={p.image} alt={p.alt}
-          loading="lazy" decoding="async" width="300" height="180"
-          class="w-full aspect-video object-cover"
-        />
-        <h3 class="mt-3 mb-1 text-[var(--text-soft)] text-[1.05rem] font-semibold">{p.title}</h3>
-        <p class="m-0 text-[var(--text-soft)] text-[0.92rem] flex-1">{p.description}</p>
-        <div class="flex flex-wrap gap-3 mt-3">
-          <a href={p.github} target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1 text-[var(--accent)] no-underline font-semibold text-sm hover:underline">
-            <Icon name="github" size={15} />
-            GitHub
-          </a>
-          {p.live && (
-            <a href={p.live} target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-1 text-[var(--accent)] no-underline font-semibold text-sm hover:underline">
-              <Icon name="external" size={15} />
-              Live Demo
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4">
+    {
+      projects.map((p) => (
+        <article
+          class="bg-[var(--surface-strong)] border border-[var(--card-border)]
+                      rounded-[10px] p-4 flex flex-col"
+        >
+          <img
+            src={p.image}
+            alt={p.alt}
+            loading="lazy"
+            decoding="async"
+            width="300"
+            height="180"
+            class="w-full aspect-video object-cover"
+          />
+          <h3 class="mt-3 mb-1 text-[var(--text-soft)] text-[1.05rem] font-semibold">
+            {p.title}
+          </h3>
+          <p class="m-0 text-[var(--text-soft)] text-[0.92rem] flex-1">
+            {p.description}
+          </p>
+          <div class="flex flex-wrap gap-3 mt-3">
+            <a
+              href={p.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-[var(--accent)] no-underline font-semibold text-sm hover:underline"
+            >
+              <Icon name="github" size={15} />
+              GitHub
             </a>
-          )}
-        </div>
-      </article>
-    ))}
+            {p.live && (
+              <a
+                href={p.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 text-[var(--accent)] no-underline font-semibold text-sm hover:underline"
+              >
+                <Icon name="external" size={15} />
+                Live Demo
+              </a>
+            )}
+          </div>
+        </article>
+      ))
+    }
   </div>
 </section>

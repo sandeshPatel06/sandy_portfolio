@@ -38,7 +38,7 @@ function showImage() {
   var modal = document.getElementById("myModal");
   var modalImage = document.getElementById("modalImage");
   if (!modal || !modalImage) return;
-  modalImage.src = "/img/ct.jpg";
+  modalImage.src = "/img/codetech-internship-certificate.webp";
   modal.style.display = "block";
 }
 
@@ -46,7 +46,7 @@ function showImag() {
   var modal = document.getElementById("myModal");
   var modalImage = document.getElementById("modalImage");
   if (!modal || !modalImage) return;
-  modalImage.src = "/img/nt.jpg";
+  modalImage.src = "/img/next24tech-internship-certificate.webp";
   modal.style.display = "block";
 }
 

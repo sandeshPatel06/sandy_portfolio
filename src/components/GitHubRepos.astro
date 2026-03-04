@@ -1,101 +1,162 @@
 ---
+
 ---
 
-<section id="github-repos" class="mt-8 p-5 bg-[var(--surface)] rounded-[12px]
-  shadow-[0_10px_25px_rgba(0,0,0,0.2)] border border-[var(--card-border)]">
+<section
+  id="github-repos"
+  class="mt-8 p-5 bg-[var(--surface)] rounded-[12px]
+  shadow-[0_10px_25px_rgba(0,0,0,0.2)] border border-[var(--card-border)]"
+>
   <h2 class="mt-0 mb-4 text-[var(--text-soft)]">Latest GitHub Repositories</h2>
-  <div id="repo-list" class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4"></div>
+  <div
+    id="repo-list"
+    class="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4"
+  >
+  </div>
 </section>
 
 <script is:inline>
   (function () {
-    const defaultAvatar = 'https://github.com/sandeshPatel06.png';
+    const defaultAvatar = "https://github.com/sandeshPatel06.png";
     const formatDate = (v) =>
-      new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(new Date(v));
+      new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        year: "numeric",
+      }).format(new Date(v));
 
     const repoDescriptions = {
-      'tab-extractor':    'A browser utility to extract and manage tab data, making it easy to capture and export open browser tabs.',
-      'play-veee':        'A TypeScript-based interactive media player app with a clean and modern UI for seamless playback control.',
-      'jarvis-chat':      'A real-time AI-powered chat application built with TypeScript featuring WebRTC calls, Firebase messaging, and a Jarvis-inspired interface.',
-      'MOTION_MART':      'A Python-powered e-commerce platform for motion products, featuring a full product catalog, cart system, and order management.',
-      'sandyPortfolio':   'My personal developer portfolio showcasing projects, skills, and experience — built with CSS and responsive design principles.',
-      'file-share':       'A lightweight peer-to-peer file sharing tool enabling quick and secure transfers between devices.',
-      'sandy_portfolio':  'The latest iteration of my personal portfolio site built with HTML, CSS, and Astro — live on Vercel.',
-      'TTSbyPython.CT':   'A Text-to-Speech web interface powered by Python, created as part of the CodeTech IT Solutions internship task.',
-      'SH-pixel':         'A TypeScript project exploring pixel-level image manipulation and rendering for creative visual effects.',
-      'tourism-web':      'A responsive tourism and travel website featuring destination highlights, booking info, and an engaging HTML/CSS layout.',
-      'sandeshPatel06':   'My GitHub profile README with config files, bio, and stats cards to present my work and skills at a glance.',
-      'BMI-calculator':   'An interactive BMI Calculator built with HTML, CSS, and JavaScript — computes and classifies Body Mass Index in real time.',
-      'personalJarvisAi': 'A personal AI assistant inspired by Jarvis, built with Python — capable of voice commands, web search, and task automation.',
-      'E-learningWeb':    'A full-featured e-learning platform offering tech courses with Google Form integration, built during my web development internship.',
-      'RPS-Game':         'A fun Rock Paper Scissors game with dynamic scoring and animations, built in vanilla JavaScript.',
-      'Web-design-01':    'A tour booking website with destination browsing, date selection, and preference options — a core HTML/CSS web design project.',
-      'Digital-India':    'A frontend replica of the Digital India government portal, showcasing key schemes and initiatives in a clean layout.',
-      'MY-LPG':           'An LPG cylinder booking and management website featuring a clean HTML/CSS interface for tracking orders and status.',
-      'CM-helpline':      'A Chief Minister Helpline portal frontend with complaint registration, status tracking, and department routing UI.',
-      '-to-do-list-':     'A Python-powered To-Do list app with task creation, completion tracking, and persistent local storage.',
-      'Test_API':         'A Python REST API testing sandbox used to explore endpoint design, request handling, and JSON response formatting.',
-      'DB':               'A database exploration project experimenting with SQL schemas, queries, and basic CRUD operations.',
-      'task1ByCTIS':      'First internship task from CodeTech IT Solutions — a web page demonstrating fundamental HTML/CSS layout and styling techniques.',
-      'Task2CTIS':        'Second internship deliverable from CodeTech — a CSS-heavy responsive design task showcasing advanced layout and animation skills.',
+      "tab-extractor":
+        "A browser utility to extract and manage tab data, making it easy to capture and export open browser tabs.",
+      "play-veee":
+        "A TypeScript-based interactive media player app with a clean and modern UI for seamless playback control.",
+      "jarvis-chat":
+        "A real-time AI-powered chat application built with TypeScript featuring WebRTC calls, Firebase messaging, and a Jarvis-inspired interface.",
+      MOTION_MART:
+        "A Python-powered e-commerce platform for motion products, featuring a full product catalog, cart system, and order management.",
+      sandyPortfolio:
+        "My personal developer portfolio showcasing projects, skills, and experience — built with CSS and responsive design principles.",
+      "file-share":
+        "A lightweight peer-to-peer file sharing tool enabling quick and secure transfers between devices.",
+      sandy_portfolio:
+        "The latest iteration of my personal portfolio site built with HTML, CSS, and Astro — live on Vercel.",
+      "TTSbyPython.CT":
+        "A Text-to-Speech web interface powered by Python, created as part of the CodeTech IT Solutions internship task.",
+      "SH-pixel":
+        "A TypeScript project exploring pixel-level image manipulation and rendering for creative visual effects.",
+      "tourism-web":
+        "A responsive tourism and travel website featuring destination highlights, booking info, and an engaging HTML/CSS layout.",
+      sandeshPatel06:
+        "My GitHub profile README with config files, bio, and stats cards to present my work and skills at a glance.",
+      "BMI-calculator":
+        "An interactive BMI Calculator built with HTML, CSS, and JavaScript — computes and classifies Body Mass Index in real time.",
+      personalJarvisAi:
+        "A personal AI assistant inspired by Jarvis, built with Python — capable of voice commands, web search, and task automation.",
+      "E-learningWeb":
+        "A full-featured e-learning platform offering tech courses with Google Form integration, built during my web development internship.",
+      "RPS-Game":
+        "A fun Rock Paper Scissors game with dynamic scoring and animations, built in vanilla JavaScript.",
+      "Web-design-01":
+        "A tour booking website with destination browsing, date selection, and preference options — a core HTML/CSS web design project.",
+      "Digital-India":
+        "A frontend replica of the Digital India government portal, showcasing key schemes and initiatives in a clean layout.",
+      "MY-LPG":
+        "An LPG cylinder booking and management website featuring a clean HTML/CSS interface for tracking orders and status.",
+      "CM-helpline":
+        "A Chief Minister Helpline portal frontend with complaint registration, status tracking, and department routing UI.",
+      "-to-do-list-":
+        "A Python-powered To-Do list app with task creation, completion tracking, and persistent local storage.",
+      Test_API:
+        "A Python REST API testing sandbox used to explore endpoint design, request handling, and JSON response formatting.",
+      DB: "A database exploration project experimenting with SQL schemas, queries, and basic CRUD operations.",
+      task1ByCTIS:
+        "First internship task from CodeTech IT Solutions — a web page demonstrating fundamental HTML/CSS layout and styling techniques.",
+      Task2CTIS:
+        "Second internship deliverable from CodeTech — a CSS-heavy responsive design task showcasing advanced layout and animation skills.",
     };
 
     const langColors = {
-      TypeScript: '#3178c6', JavaScript: '#f0db4f', Python: '#3572A5',
-      HTML: '#e34c26', CSS: '#563d7c', Java: '#b07219', C: '#555555',
+      TypeScript: "#3178c6",
+      JavaScript: "#f0db4f",
+      Python: "#3572A5",
+      HTML: "#e34c26",
+      CSS: "#563d7c",
+      Java: "#b07219",
+      C: "#555555",
     };
 
-    const esc = (v) => String(v)
-      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
-      .replaceAll('"','&quot;').replaceAll("'",'&#39;');
+    const esc = (v) =>
+      String(v)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const list = document.getElementById('repo-list');
+    window.addEventListener("DOMContentLoaded", () => {
+      const list = document.getElementById("repo-list");
       if (!list) return;
 
-      fetch('https://api.github.com/users/sandeshPatel06/repos?sort=updated&per_page=30')
-        .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+      fetch(
+        "https://api.github.com/users/sandeshPatel06/repos?sort=updated&per_page=30",
+      )
+        .then((r) => {
+          if (!r.ok) throw new Error();
+          return r.json();
+        })
         .then((repos) => {
           if (!Array.isArray(repos) || !repos.length) return;
 
           const prepared = repos
             .filter((r) => !r.fork && !r.archived)
             .sort((a, b) => {
-              if (b.stargazers_count !== a.stargazers_count) return b.stargazers_count - a.stargazers_count;
+              if (b.stargazers_count !== a.stargazers_count)
+                return b.stargazers_count - a.stargazers_count;
               return new Date(b.pushed_at) - new Date(a.pushed_at);
             })
             .slice(0, 12);
 
-          list.innerHTML = prepared.map((repo) => {
-            const name      = esc(repo.name);
-            const lang      = repo.language || null;
-            const langLabel = lang ? esc(lang) : null;
-            const dotColor  = langLabel && langColors[langLabel] ? langColors[langLabel] : null;
-            const langDot   = dotColor ? `<span class="lang-dot" style="background:${dotColor}"></span>` : '';
-            const stars     = Number(repo.stargazers_count || 0);
-            const forks     = Number(repo.forks_count || 0);
-            const issues    = Number(repo.open_issues_count || 0);
-            const pushed    = formatDate(repo.pushed_at || repo.updated_at);
-            const topics    = Array.isArray(repo.topics) ? repo.topics.slice(0, 3).map(esc) : [];
+          list.innerHTML = prepared
+            .map((repo) => {
+              const name = esc(repo.name);
+              const lang = repo.language || null;
+              const langLabel = lang ? esc(lang) : null;
+              const dotColor =
+                langLabel && langColors[langLabel]
+                  ? langColors[langLabel]
+                  : null;
+              const langDot = dotColor
+                ? `<span class="lang-dot" style="background:${dotColor}"></span>`
+                : "";
+              const stars = Number(repo.stargazers_count || 0);
+              const forks = Number(repo.forks_count || 0);
+              const issues = Number(repo.open_issues_count || 0);
+              const pushed = formatDate(repo.pushed_at || repo.updated_at);
+              const topics = Array.isArray(repo.topics)
+                ? repo.topics.slice(0, 3).map(esc)
+                : [];
 
-            const curated   = repoDescriptions[repo.name];
-            const rawDesc   = repo.description ? esc(repo.description) : null;
-            const generated = topics.length
-              ? `Repository focused on ${topics.join(', ')}.`
-              : `A ${langLabel ? langLabel.toLowerCase() : 'code'} project from my GitHub portfolio.`;
-            const desc = (curated ? esc(curated) : null) || rawDesc || generated;
+              const curated = repoDescriptions[repo.name];
+              const rawDesc = repo.description ? esc(repo.description) : null;
+              const generated = topics.length
+                ? `Repository focused on ${topics.join(", ")}.`
+                : `A ${langLabel ? langLabel.toLowerCase() : "code"} project from my GitHub portfolio.`;
+              const desc =
+                (curated ? esc(curated) : null) || rawDesc || generated;
 
-            const liveUrl  = repo.homepage && String(repo.homepage).trim() ? esc(repo.homepage) : '';
-            const ogImage  = `https://opengraph.githubassets.com/1/sandeshPatel06/${encodeURIComponent(repo.name)}`;
-            const fallback = esc(repo?.owner?.avatar_url || defaultAvatar);
+              const liveUrl =
+                repo.homepage && String(repo.homepage).trim()
+                  ? esc(repo.homepage)
+                  : "";
+              const ogImage = `https://opengraph.githubassets.com/1/sandeshPatel06/${encodeURIComponent(repo.name)}`;
+              const fallback = esc(repo?.owner?.avatar_url || defaultAvatar);
 
-            const chip      = `inline-flex items-center px-2 py-0.5 rounded-full text-xs
+              const chip = `inline-flex items-center px-2 py-0.5 rounded-full text-xs
                                border border-[var(--card-border)] bg-[var(--surface)] text-[var(--text-soft)]`;
-            const chipTopic = `inline-flex items-center px-2 py-0.5 rounded-full text-xs
+              const chipTopic = `inline-flex items-center px-2 py-0.5 rounded-full text-xs
                                border border-[var(--accent)] bg-[var(--surface)] text-[var(--text-soft)]
                                opacity-80`;
 
-            return `
+              return `
               <article style="background:var(--surface-strong);border:1px solid var(--card-border)"
                        class="rounded-[10px] p-4 flex flex-col">
                 <img style="border:1px solid var(--img-border)"
@@ -106,21 +167,26 @@
                 <h3 style="color:var(--text-soft)" class="mt-3 mb-1 text-[1.05rem] font-semibold">${name}</h3>
                 <p style="color:var(--text-soft)" class="m-0 text-[0.88rem] flex-1">${desc}</p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  ${langLabel ? `<span class="${chip}">${langDot}${langLabel}</span>` : ''}
+                  ${langLabel ? `<span class="${chip}">${langDot}${langLabel}</span>` : ""}
                   <span class="${chip}">⭐ ${stars}</span>
                   <span class="${chip}">🍴 ${forks}</span>
-                  ${issues > 0 ? `<span class="${chip}">🔴 ${issues} issue${issues > 1 ? 's' : ''}</span>` : ''}
+                  ${issues > 0 ? `<span class="${chip}">🔴 ${issues} issue${issues > 1 ? "s" : ""}</span>` : ""}
                   <span class="${chip}">📅 ${pushed}</span>
                 </div>
-                ${topics.length ? `<div class="flex flex-wrap gap-1.5 mt-2">${topics.map(t => `<span class="${chipTopic}">${t}</span>`).join('')}</div>` : ''}
+                ${topics.length ? `<div class="flex flex-wrap gap-1.5 mt-2">${topics.map((t) => `<span class="${chipTopic}">${t}</span>`).join("")}</div>` : ""}
                 <div class="flex flex-wrap gap-3 mt-3">
                   <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer"
                      style="color:var(--accent)" class="no-underline font-semibold text-sm hover:underline">Open Repository</a>
-                  ${liveUrl ? `<a href="${liveUrl}" target="_blank" rel="noopener noreferrer"
-                     style="color:var(--accent)" class="no-underline font-semibold text-sm hover:underline">Live Demo</a>` : ''}
+                  ${
+                    liveUrl
+                      ? `<a href="${liveUrl}" target="_blank" rel="noopener noreferrer"
+                     style="color:var(--accent)" class="no-underline font-semibold text-sm hover:underline">Live Demo</a>`
+                      : ""
+                  }
                 </div>
               </article>`;
-          }).join('');
+            })
+            .join("");
         })
         .catch(() => {});
     });

@@ -32,7 +32,6 @@ const navLinks = [
   { href: "/#about", label: "About", icon: "user" },
   { href: "/#services", label: "Services", icon: "wrench" },
   { href: "/#projects", label: "Projects", icon: "folder" },
-  { href: "/repos", label: "Repos", icon: "code" },
 ];
 
 const footerLinks = [
@@ -69,11 +68,28 @@ const footerLinks = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={siteUrl} />
-    <meta property="og:image" content={`${siteUrl}img/bg.png`} />
+    <meta
+      property="og:image"
+      content={`${siteUrl}img/hero-illustration.webp`}
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}img/bg.png`} />
+    <meta
+      name="twitter:image"
+      content={`${siteUrl}img/hero-illustration.webp`}
+    />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DB0JPTJ5W8"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-DB0JPTJ5W8");
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -213,14 +229,20 @@ const footerLinks = [
     </main>
 
     <footer
-      class="px-4 py-8 bg-[var(--footer-bg)] border-t border-[var(--card-border)]"
+      class="px-4 py-10 bg-[var(--footer-bg)] border-t border-[var(--card-border)]"
     >
       <div
-        class="flex flex-col md:flex-row justify-between items-center max-w-[1120px] mx-auto gap-4"
+        class="max-w-[1120px] mx-auto flex flex-col items-center gap-6 text-center"
       >
-        <div class="font-semibold text-[var(--text-soft)]">
-          Sandy's Portfolio Website
+        <div>
+          <div class="font-bold text-lg text-[var(--text-soft)] tracking-wide">
+            Sandesh Patel
+          </div>
+          <div class="text-xs text-[var(--text-muted)] mt-1">
+            Frontend Developer · Full-Stack Learner · Cybersecurity Enthusiast
+          </div>
         </div>
+
         <ul class="flex gap-5 m-0 p-0 list-none">
           {
             footerLinks.map((link) => (
@@ -234,38 +256,18 @@ const footerLinks = [
                       : "noopener noreferrer"
                   }
                   aria-label={link.label}
-                  class="text-[var(--text-soft)] no-underline hover:text-[var(--accent)] transition-colors flex items-center gap-1.5"
+                  class="text-[var(--text-muted)] no-underline hover:text-[var(--accent)] transition-colors flex items-center gap-1.5"
                 >
-                  <Icon name={link.icon} size={18} />
-                  <span class="hidden sm:inline">{link.label}</span>
+                  <Icon name={link.icon} size={20} />
                 </a>
               </li>
             ))
           }
         </ul>
-      </div>
-      <div
-        class="mt-4 text-[var(--text-muted)] text-[0.9rem] max-w-[1120px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2"
-      >
-        <ul class="flex gap-4 m-0 p-0 list-none">
-          <li>
-            <a
-              href="#"
-              class="text-[var(--text-muted)] no-underline hover:underline"
-              >Privacy Policy</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="text-[var(--text-muted)] no-underline hover:underline"
-              >Terms of Service</a
-            >
-          </li>
-        </ul>
-        <span
-          >Copyright &#169; 2026 <span id="site-host"></span> | All rights reserved</span
-        >
+
+        <p class="m-0 text-xs text-[var(--text-muted)]">
+          Made with ♥ by Sandesh Patel &mdash; &copy; {new Date().getFullYear()}
+        </p>
       </div>
     </footer>
 
@@ -275,9 +277,6 @@ const footerLinks = [
       defer></script>
     <script is:inline>
       window.addEventListener("DOMContentLoaded", () => {
-        const hostEl = document.getElementById("site-host");
-        if (hostEl) hostEl.textContent = window.location.hostname;
-
         const html = document.documentElement;
         const btn = document.getElementById("theme-toggle");
         const knob = document.getElementById("theme-knob");
